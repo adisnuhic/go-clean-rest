@@ -71,6 +71,14 @@ Both **Clean Architecture** and **N-Tier** **Architecture** aim to organize soft
 
 In **Clean Architecture**, there's a strong emphasis on Dependency Inversion Principle (DIP) and Dependency Injection. Clean Architecture advocates for the use of abstractions/interfaces (loosely coupled and testable code) to define interactions with external resources (like databases, file systems, etc.), keeping the inner layers independent of the concrete implementations of these resources.
 
+
+![93830264-afa9c480-fcaa-11ea-9589-7c5308c291f4](https://github.com/adisnuhic/go-clean/assets/17688087/1c031497-567f-4381-b4f6-1efa1c503e05)
+![clean-arch](https://github.com/adisnuhic/go-clean/assets/17688087/629abc87-6862-450f-950e-92bb14b7b343)
+
+
+
 **N-Tier** Architecture, on the other hand, does not specifically enforce this level of abstraction. While it also divides the application into layers (presentation, business logic, data access), it might not inherently emphasize the use of interfaces to abstract data access.
+
+
 
 
