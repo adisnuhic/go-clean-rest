@@ -1,7 +1,8 @@
 
 # GO Clean Architecture
 
-I have borrowed some of the GO standard layout which will be described below in details. For more info: https://github.com/golang-standards/project-layout
+I have borrowed some of the GO standard layout which will be described below in details. 
+For more info: https://github.com/golang-standards/project-layout
 
 
 ## Structure:
@@ -40,7 +41,7 @@ Some terminology may differ from team to team
 
 
 
-**Flow:** 
+**Clean Flow:** 
 The flow typically involves:
 
 
