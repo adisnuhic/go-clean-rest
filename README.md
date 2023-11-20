@@ -1,21 +1,8 @@
 
 # GO Clean Architecture
 
-Golang standard layout is mostly used for small to mid size projects. Some advantages of using standard layout are:
+I have borrowed some of the GO standard layout which will be described below in details. For more info: https://github.com/golang-standards/project-layout
 
-- Suitable for small to medium-sized projects.
-
-- Emphasizes Go's package-centric design, often referred to as "package-oriented" development. It organizes your code based on packages rather than strictly enforcing a layered architecture.
-
-- Works well for projects where simplicity and quick development are priorities.
-
-- This approach encourages a more modular and package-centric organization of your code.
-
-- The golden rule of defining Go packages is the single responsibility principle (SRP): each package should only be responsible for a single part of the program’s functionality
-
-- You can still implement separation of concerns by using package-level encapsulation and defining clear interfaces within your packages.
-
-  
 
 ## Structure:
 
