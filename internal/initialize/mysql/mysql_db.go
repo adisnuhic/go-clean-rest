@@ -1,4 +1,4 @@
-package db
+package mysql
 
 import (
 	"os"
@@ -6,7 +6,7 @@ import (
 
 	"github.com/rs/zerolog/log"
 
-	"github.com/adisnuhic/go-stanard-layout/config"
+	"github.com/adisnuhic/go-clean/config"
 	"github.com/jinzhu/gorm"
 
 	// Initialize mysql driver

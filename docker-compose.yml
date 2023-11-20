@@ -1,28 +1,28 @@
 version: "3.3"
 services:
-  db:
+  db_clean:
     platform: linux/amd64
     image: mysql:8.0
-    container_name: db
-    hostname: db
+    container_name: db_clean
+    hostname: db_clean
     restart: on-failure
     ports:
       - "3306:3306"
     volumes:
-      - api-data:/var/lib/mysql
+      - api_clean-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: api
       MYSQL_USER: test
       MYSQL_PASSWORD: test
-  api:
+  api_clean:
     build: ./
-    container_name: api
+    container_name: api_clean
     depends_on:
-      - db
+      - db_clean
     env_file: ./.env
     restart: on-failure
     ports:
       - "8080:8080"
 volumes:
-  api-data:        
+  api_clean-data:        
