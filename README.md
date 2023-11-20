@@ -1,5 +1,5 @@
 
-# GO REST API Clean Architecture
+# GO Clean Architecture
 
 Golang standard layout is mostly used for small to mid size projects. Some advantages of using standard layout are:
 
