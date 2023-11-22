@@ -65,9 +65,13 @@ In **Clean Architecture**, there's a strong emphasis on Dependency Inversion Pri
 **N-Tier** Architecture, on the other hand, does not specifically enforce this level of abstraction. While it also divides the application into layers (presentation, business logic, data access), it might not inherently emphasize the use of interfaces to abstract data access.
 
 
-
+## Clean Diagrams:
 ![93830264-afa9c480-fcaa-11ea-9589-7c5308c291f4](https://github.com/adisnuhic/go-clean/assets/17688087/1c031497-567f-4381-b4f6-1efa1c503e05)
 ![clean-arch](https://github.com/adisnuhic/go-clean/assets/17688087/629abc87-6862-450f-950e-92bb14b7b343)
+
+
+## N-Tier Diagrams:
+![1_mCAPI1Q7y7XfyrtB58DzkQ](https://github.com/adisnuhic/go-clean/assets/17688087/275cdf95-e9a5-4c7d-bed8-e9e3f4ad2bf0)
 
 
 
