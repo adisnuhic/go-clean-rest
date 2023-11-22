@@ -9,7 +9,5 @@ CREATE TABLE users (
   updated_at TIMESTAMP DEFAULT now(),
   deleted_at TIMESTAMP NULL,
   PRIMARY KEY(id),
-  UNIQUE (email),
-  FOREIGN KEY (country_id) REFERENCES `countries`(`id`),
-  FOREIGN KEY (dial_code_id) REFERENCES `dial_codes`(`id`)
+  UNIQUE (email)
 );

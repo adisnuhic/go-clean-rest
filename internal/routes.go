@@ -9,7 +9,9 @@ import (
 )
 
 var (
-	userCtrl rest.IUserController
+	userCtrl    rest.IUserController
+	healthCtrl  rest.IHealthController
+	accountCtrl rest.IAccountController
 )
 
 // initialize app routes
@@ -25,8 +27,12 @@ func InitRoutes(c container.Container, app *gin.Engine) {
 	v1 := app.Group("/v1")
 
 	// health check route
-	healthRoutes := v1.Group("/users")
-	healthRoutes.GET("/", userCtrl.GetByID)
+	healthRoutes := v1.Group("/ping")
+	healthRoutes.GET("/", healthCtrl.Ping)
+
+	// account routes
+	accountRoutes := v1.Group("/account")
+	accountRoutes.POST("/login", accountCtrl.Login)
 
 	// --------------------------------------------------- //
 	//						SWAGGER						   //

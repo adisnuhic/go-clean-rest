@@ -20,4 +20,8 @@ func Init(c container.Container) {
 		return NewUserController(userSvc)
 	})
 
+	// Bind user controller
+	c.Singleton(func() IHealthController {
+		return NewHealthController()
+	})
 }
