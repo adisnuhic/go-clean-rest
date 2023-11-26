@@ -4,7 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// IHealthController represents the user's controller/handler contract
+// IHealthController represents the user's controller contract
 type IHealthController interface {
 	Ping(ctx *gin.Context)
 }

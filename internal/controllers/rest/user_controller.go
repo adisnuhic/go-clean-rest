@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// IUserController represents the user's controller/handler contract
+// IUserController represents the user's controller contract
 type IUserController interface {
 	GetByID(ctx *gin.Context)
 }

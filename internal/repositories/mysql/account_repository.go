@@ -12,6 +12,7 @@ type accountRepository struct {
 	Store mysql.Store
 }
 
+// NewMySQLAccountRepository -
 func NewMySQLAccountRepository(s mysql.Store) repositories.IAccountRepository {
 	return &accountRepository{
 		Store: s,
