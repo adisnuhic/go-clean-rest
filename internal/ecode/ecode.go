@@ -85,4 +85,24 @@ const (
 	ErrTokenExpiredCode = 160
 	// ErrTokenExpiredMsg message
 	ErrTokenExpiredMsg = "token is expired"
+
+	// ErrUnableToUpdateTokenCode code
+	ErrUnableToUpdateTokenCode = 170
+	// ErrUnableToUpdateTokenMsg message
+	ErrUnableToUpdateTokenMsg = "unable to update token"
+
+	// ErrGeneratingTokenCode code
+	ErrGeneratingTokenCode = 180
+	// ErrGeneratingTokenMsg message
+	ErrGeneratingTokenMsg = "error generating token"
+
+	// ErrUnableToCreateUserCode code
+	ErrUnableToCreateUserCode = 190
+	// ErrUnableToCreateUserMsg message
+	ErrUnableToCreateUserMsg = "unable to create user"
+
+	// ErrUnableToGetUserCode code
+	ErrUnableToGetUserCode = 200
+	// ErrUnableToGetUserMsg message
+	ErrUnableToGetUserMsg = "unable to get user"
 )

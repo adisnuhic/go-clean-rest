@@ -5,7 +5,7 @@ import (
 	"github.com/adisnuhic/go-clean/pkg/apperror"
 )
 
-// IAuthProviderRepository represents the auth provider's repository contract
+// IAuthProviderRepository represents the auth provider repository contract
 type IAuthProviderRepository interface {
 	GetByUserID(id uint64) (*models.AuthProvider, *apperror.AppError)
 	GetByUserIDProviderID(userID uint64, provider string) (*models.AuthProvider, *apperror.AppError)

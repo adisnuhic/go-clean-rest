@@ -54,8 +54,7 @@ The flow typically involves:
 4.  **Services/Usecases Depending on Repository Interfaces**: Utilizing repository interfaces as abstractions is a core tenet of Clean Architecture. By depending on repository interfaces rather than concrete implementations, your use cases or services remain decoupled from specific data storage mechanisms or implementations. This allows for flexibility in swapping or modifying data access methods without affecting the business logic.
 
 
-Although the layered architecture pattern does not specify the number and types of layers that must exist in the pattern, most layered architectures consist of four standard layers: presentation, business, persistence, and database. 
-
+In Clean Architecture, there isn't a strict limit on the number of layers you can have. The primary focus of Clean Architecture is on separation of concerns and maintaining a clear, understandable, and maintainable codebase. The number of layers can vary based on the complexity and requirements of the application. Some applications might benefit from having more layers to clearly separate concerns, while others might achieve the same goals with fewer layers.
 
 ## Clean vs N-Tier:
 Both **Clean Architecture** and **N-Tier** **Architecture** aim to organize software into layers for better maintainability, separation of concerns, and scalability. They share similarities in the sense that they advocate for dividing an application into distinct layers to manage complexity and improve maintainability.

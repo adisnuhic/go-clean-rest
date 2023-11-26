@@ -2,6 +2,7 @@ package rest
 
 import (
 	"github.com/adisnuhic/go-clean/internal/requests"
+	"github.com/adisnuhic/go-clean/internal/services"
 	"github.com/adisnuhic/go-clean/internal/viewmodels"
 	"github.com/gin-gonic/gin"
 )
@@ -13,12 +14,14 @@ type IAccountController interface {
 
 type accountController struct {
 	BaseController
-	Service
+	Service services.IAccountService
 }
 
 // NewAccountController -
-func NewAccountController() IHealthController {
-	return &accountController{}
+func NewAccountController(svc services.IAccountService) IAccountController {
+	return &accountController{
+		Service: svc,
+	}
 }
 
 // Ping returns pong
@@ -31,7 +34,7 @@ func (ctrl accountController) Login(ctx *gin.Context) {
 		return
 	}
 
-	user, accessToken, refreshToken, appErr := ctrl.Business.Login(reqObj.Email, reqObj.Password)
+	user, accessToken, refreshToken, appErr := ctrl.Service.Login(reqObj.Email, reqObj.Password)
 
 	if appErr != nil {
 		ctrl.RenderError(ctx, appErr)

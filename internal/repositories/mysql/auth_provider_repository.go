@@ -12,8 +12,8 @@ type authProviderRepository struct {
 	Store mysql.Store
 }
 
-// NewAuthProviderRepository -
-func NewAuthProviderRepository(s mysql.Store) repositories.IAuthProviderRepository {
+// NewMySQLAuthProviderRepository -
+func NewMySQLAuthProviderRepository(s mysql.Store) repositories.IAuthProviderRepository {
 	return &authProviderRepository{
 		Store: s,
 	}

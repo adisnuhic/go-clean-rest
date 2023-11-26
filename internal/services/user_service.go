@@ -6,9 +6,9 @@ import (
 	"github.com/adisnuhic/go-clean/pkg/apperror"
 )
 
-// IUserService represents the user's service/usecase contract
+// IUserService represents the user service contract
 type IUserService interface {
-	GetByID(id uint64) (*models.User, error)
+	GetByID(id uint64) (*models.User, *apperror.AppError)
 	GetByEmail(email string) (*models.User, *apperror.AppError)
 }
 
@@ -24,7 +24,7 @@ func NewUserService(repo repositories.IUserRepository) IUserService {
 }
 
 // GetByID returns user for provided ID
-func (svc userService) GetByID(id uint64) (*models.User, error) {
+func (svc userService) GetByID(id uint64) (*models.User, *apperror.AppError) {
 	return svc.Repo.GetByID(id)
 }
 

@@ -1,8 +1,11 @@
 package repositories
 
-import "github.com/adisnuhic/go-clean/internal/models"
+import (
+	"github.com/adisnuhic/go-clean/internal/models"
+	"github.com/adisnuhic/go-clean/pkg/apperror"
+)
 
-// IAccountRepository represents the account's repository contract
+// IAccountRepository represents the account repository contract
 type IAccountRepository interface {
-	Login(email string, password string) (*models.User, error)
+	Register(user *models.User) (*models.User, *apperror.AppError)
 }

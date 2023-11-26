@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	userCtrl    rest.IUserController
 	healthCtrl  rest.IHealthController
+	userCtrl    rest.IUserController
 	accountCtrl rest.IAccountController
 )
 
@@ -18,7 +18,9 @@ var (
 func InitRoutes(c container.Container, app *gin.Engine) {
 
 	// Resolve dependencies and return concrete type of given abstractions
+	c.Make(&healthCtrl)
 	c.Make(&userCtrl)
+	c.Make(&accountCtrl)
 
 	// --------------------------------------------------- //
 	//		        		  V1 API			       	   //

@@ -7,23 +7,31 @@ import (
 	"github.com/adisnuhic/go-clean/pkg/apperror"
 )
 
+// IAccountService represents account service contract
 type IAccountService interface {
 	Login(email string, password string) (*models.User, string, string, *apperror.AppError)
 	AuthenticateUser(user *models.User) (string, string, *apperror.AppError)
 }
 
 type accountService struct {
+	TokenService ITokenService
+	AuthService  IAuthService
+
 	Repo             repositories.IAccountRepository
 	UserRepo         repositories.IUserRepository
 	AuthProviderRepo repositories.IAuthProviderRepository
+	TokenRepo        repositories.ITokenRepository
 }
 
 // NewAccountService -
-func NewAccountService(repo repositories.IAccountRepository, userRepo repositories.IUserRepository, authProviderRepo repositories.IAuthProviderRepository) IAccountService {
+func NewAccountService(tokenSvc ITokenService, authSvc IAuthService, repo repositories.IAccountRepository, userRepo repositories.IUserRepository, authProviderRepo repositories.IAuthProviderRepository, tokenRepo repositories.ITokenRepository) IAccountService {
 	return &accountService{
+		TokenService:     tokenSvc,
+		AuthService:      authSvc,
 		Repo:             repo,
 		UserRepo:         userRepo,
 		AuthProviderRepo: authProviderRepo,
+		TokenRepo:        tokenRepo,
 	}
 }
 
@@ -36,13 +44,13 @@ func (svc accountService) Login(email string, password string) (*models.User, st
 	}
 
 	// get user data
-	auth, errAuth := svc.AuthProviderService.GetByUserID(user.ID)
+	authProvider, errAuth := svc.AuthProviderRepo.GetByUserID(user.ID)
 	if errAuth != nil {
 		return nil, "", "", errAuth
 	}
 
 	// check if hash matches
-	if ok := svc.AuthService.ComparePasswordHash(password, auth.UID); !ok {
+	if ok := svc.AuthService.ComparePasswordHash(password, authProvider.UID); !ok {
 		return nil, "", "", apperror.New(ecode.ErrLoginFailedCode, ecode.ErrLoginFailedMsg, ecode.ErrLoginFailedMsg)
 	}
 

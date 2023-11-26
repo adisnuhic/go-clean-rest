@@ -6,7 +6,7 @@ import (
 	"github.com/adisnuhic/go-clean/pkg/apperror"
 )
 
-// IAuthProviderService interface
+// IAuthProviderService represents auth provider service contract
 type IAuthProviderService interface {
 	GetByUserID(id uint64) (*models.AuthProvider, *apperror.AppError)
 	GetByUserIDProviderID(userID uint64, provider string) (*models.AuthProvider, *apperror.AppError)
@@ -15,12 +15,14 @@ type IAuthProviderService interface {
 }
 
 type authProviderService struct {
+	JWTSecret  string
 	Repository repositories.IAuthProviderRepository
 }
 
 // NewAuthProviderService -
-func NewAuthProviderService(repo repositories.IAuthProviderRepository) IAuthProviderService {
+func NewAuthProviderService(secret string, repo repositories.IAuthProviderRepository) IAuthProviderService {
 	return &authProviderService{
+		JWTSecret:  secret,
 		Repository: repo,
 	}
 }
