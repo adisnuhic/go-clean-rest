@@ -1,8 +1,8 @@
 package middlewares
 
 import (
+	"github.com/adisnuhic/go-clean/pkg/log"
 	"github.com/gin-gonic/gin"
-	"github.com/rs/zerolog"
 )
 
 // GinCorsMiddleware return CORS middleware for GIN framework
@@ -24,7 +24,7 @@ func GinCorsMiddleware() gin.HandlerFunc {
 }
 
 // GinZeroLogMiddleware return Zerolog middleware for GIN framework
-func GinZeroLogMiddleware(l zerolog.Logger) gin.HandlerFunc {
+func GinZeroLogMiddleware(l log.ILogger) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		c.Set("logger", l)
 	}

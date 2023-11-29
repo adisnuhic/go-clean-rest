@@ -7,8 +7,8 @@ import (
 	"github.com/rs/zerolog"
 )
 
-// NewLogger returns new instance of zero logger
-func NewLogger() zerolog.Logger {
+// InitZeroLogger returns new instance of zero logger
+func InitZeroLogger() zerolog.Logger {
 	logger := zerolog.New(
 		zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339}, // pretty print
 	).

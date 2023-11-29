@@ -8,7 +8,7 @@ import (
 
 // IUserService represents the user service contract
 type IUserService interface {
-	GetByID(id uint64) (*models.User, *apperror.AppError)
+	GetByID(id uint64) (*models.User, error)
 	GetByEmail(email string) (*models.User, *apperror.AppError)
 }
 
@@ -24,7 +24,7 @@ func NewUserService(repo repositories.IUserRepository) IUserService {
 }
 
 // GetByID returns user for provided ID
-func (svc userService) GetByID(id uint64) (*models.User, *apperror.AppError) {
+func (svc userService) GetByID(id uint64) (*models.User, error) {
 	return svc.Repo.GetByID(id)
 }
 

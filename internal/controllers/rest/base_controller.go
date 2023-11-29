@@ -51,6 +51,11 @@ func (ctrl BaseController) RenderError(ctx *gin.Context, err interface{}) {
 	ctrl.Render(ctx, false, http.StatusInternalServerError, nil, err)
 }
 
+// RenderNotFound renders not found error response
+func (ctrl BaseController) RenderNotFound(ctx *gin.Context, err interface{}) {
+	ctrl.Render(ctx, false, http.StatusNotFound, nil, err)
+}
+
 // RenderBadRequest renders bad request response
 func (ctrl BaseController) RenderBadRequest(ctx *gin.Context, err interface{}) {
 	ctrl.Render(ctx, false, http.StatusBadRequest, nil, err)

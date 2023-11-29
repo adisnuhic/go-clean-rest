@@ -4,9 +4,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/rs/zerolog/log"
-
 	"github.com/adisnuhic/go-clean/config"
+	"github.com/adisnuhic/go-clean/pkg/log"
 	"github.com/jinzhu/gorm"
 
 	// Initialize mysql driver
@@ -23,10 +22,10 @@ import (
 var dbStore Store
 
 // Init initialize db
-func Init(cfg *config.AppConfig) {
+func Init(cfg *config.AppConfig, logger log.ILogger) {
 	env := os.Getenv("ENV")
-	dbStore = initDB(cfg.DBConnections[env])
-	runMigrate(dbStore)
+	dbStore = initDB(cfg.DBConnections[env], logger)
+	runMigrate(dbStore, logger)
 }
 
 // Connection get databse connection
@@ -43,7 +42,7 @@ func Close() error {
 }
 
 // initDB init database connection
-func initDB(dbConn config.DBConnection) Store {
+func initDB(dbConn config.DBConnection, logger log.ILogger) Store {
 
 	if dbConn.DBDialect == "" || dbConn.DBConnection == "" {
 		return nil
@@ -52,12 +51,12 @@ func initDB(dbConn config.DBConnection) Store {
 	// open DB connection
 	myDB, err := gorm.Open(dbConn.DBDialect, dbConn.DBConnection)
 	if err != nil {
-		log.Error().Msg(err.Error())
+		// logger.Error().Msg(err.Error())
 	}
 
 	// ping database
 	if err := myDB.DB().Ping(); err != nil {
-		log.Error().Msg(err.Error())
+		// logger.Error().Msg(err.Error())
 	}
 
 	// SetMaxIdleConns sets maximum number of connections in the idle connection pool
@@ -76,29 +75,32 @@ func initDB(dbConn config.DBConnection) Store {
 	// Enable Logger, show detailed log
 	myDB.LogMode(dbConn.DbLogging)
 
-	log.Print("initialized API database successfully")
+	logger.Print("initialized API database successfully")
 
 	return myDB
 
 }
 
 // executes migrations against database
-func runMigrate(store Store) {
+func runMigrate(store Store, logger log.ILogger) {
 	driver, err := mysqlmigrate.WithInstance(store.DB(), &mysqlmigrate.Config{})
 	if err != nil {
-		log.Fatal().Msg(err.Error())
+		//logger.Fatal().Msg(err.Error())
 	}
 	m, err := migrate.NewWithDatabaseInstance(
 		"file://migrations",
 		"mysql", driver)
 	if err != nil {
-		log.Fatal().Msg(err.Error())
+		// logger.Fatal().Msg(err.Error())
 	}
 
 	migrateErr := m.Up()
 	if migrateErr != nil {
-		log.Printf("Unable to migrate: %v", migrateErr)
+		logger.Printf("Unable to migrate: %v", migrateErr)
 	}
 
-	log.Print("migrations executed successfully")
+	if migrateErr == nil {
+		logger.Print("migrations executed successfully")
+	}
+
 }

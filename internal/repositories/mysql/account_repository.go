@@ -21,7 +21,6 @@ func NewMySQLAccountRepository(s mysql.Store) repositories.IAccountRepository {
 
 // Register user
 func (repo accountRepository) Register(user *models.User) (*models.User, *apperror.AppError) {
-
 	if err := repo.Store.Create(&user).Error; err != nil {
 		return nil, apperror.New(ecode.ErrUnableToCreateUserCode, err.Error(), ecode.ErrUnableToCreateUserMsg)
 	}

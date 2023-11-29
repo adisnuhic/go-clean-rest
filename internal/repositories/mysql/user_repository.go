@@ -20,13 +20,13 @@ func NewMySQLUserRepository(s mysql.Store) repositories.IUserRepository {
 }
 
 // GetByID returns User for provided ID
-func (repo mySqlUserRepository) GetByID(id uint64) (*models.User, *apperror.AppError) {
+func (repo mySqlUserRepository) GetByID(id uint64) (*models.User, error) {
 	u := &models.User{}
 
-	tx := repo.Store.Where("id = 1").Find(u)
+	tx := repo.Store.Where("id = ?", id).Find(u)
 
 	if tx.Error != nil {
-		return nil, apperror.New(ecode.ErrUnableToGetUserCode, ecode.ErrUnableToGetUserMsg, ecode.ErrUnableToGetUserMsg)
+		return nil, tx.Error
 	}
 
 	return u, nil

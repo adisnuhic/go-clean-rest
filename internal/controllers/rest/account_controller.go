@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// IAccountController represents the user's controller contract
+// IAccountController represents the account controller contract
 type IAccountController interface {
 	Login(ctx *gin.Context)
 }

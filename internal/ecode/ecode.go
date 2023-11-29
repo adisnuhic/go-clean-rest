@@ -1,6 +1,11 @@
 package ecode
 
 const (
+
+	// Status codes
+	// ErrStatusNotFound code
+	ErrStatusNotFoundCode = 404
+
 	// ErrUnableToParseQueryStringCode code
 	ErrUnableToParseQueryStringCode = 1
 	// ErrUnableToParseQueryStringCode message
