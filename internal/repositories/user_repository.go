@@ -7,6 +7,6 @@ import (
 
 // IUserRepository represents the user repository contract
 type IUserRepository interface {
-	GetByID(id uint64) (*models.User, error)
+	GetByID(id uint64) (*models.User, *apperror.AppError)
 	GetByEmail(email string) (*models.User, *apperror.AppError)
 }

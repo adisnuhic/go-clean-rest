@@ -42,7 +42,6 @@ func NewAccountService(logger log.ILogger, tokenSvc ITokenService, authSvc IAuth
 // Login user
 func (svc accountService) Login(email string, password string) (*models.User, string, string, *apperror.AppError) {
 	user, errUser := svc.UserRepo.GetByEmail(email)
-	svc.Logger.Printf("LOGGER DJELO: %v", 22)
 	if errUser != nil {
 		return nil, "", "", apperror.New(ecode.ErrLoginFailedCode, errUser.Cause, ecode.ErrLoginFailedMsg)
 	}
