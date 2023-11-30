@@ -7,6 +7,7 @@ import (
 	"github.com/adisnuhic/go-clean/internal/models"
 	"github.com/adisnuhic/go-clean/internal/repositories"
 	"github.com/adisnuhic/go-clean/pkg/apperror"
+	"github.com/adisnuhic/go-clean/pkg/log"
 	"github.com/adisnuhic/go-clean/pkg/utils"
 	"github.com/rs/xid"
 )
@@ -41,12 +42,14 @@ type ITokenService interface {
 }
 
 type tokenService struct {
+	Logger     log.ILogger
 	Repository repositories.ITokenRepository
 }
 
 // NewTokenService -
-func NewTokenService(repo repositories.ITokenRepository) ITokenService {
+func NewTokenService(logger log.ILogger, repo repositories.ITokenRepository) ITokenService {
 	return &tokenService{
+		Logger:     logger,
 		Repository: repo,
 	}
 }

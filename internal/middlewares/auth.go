@@ -26,7 +26,6 @@ func Authorization(logger log.ILogger) gin.HandlerFunc {
 				errAbort := ctx.AbortWithError(401, errors.New("unauthorized"))
 				if errAbort != nil {
 					logger.Errorf("Abort with error unauthorized err: %v", errAbort)
-
 				}
 				return
 			}

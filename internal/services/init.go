@@ -3,6 +3,7 @@ package services
 import (
 	"github.com/adisnuhic/go-clean/config"
 	"github.com/adisnuhic/go-clean/internal/repositories"
+	"github.com/adisnuhic/go-clean/pkg/log"
 	"github.com/golobby/container/pkg/container"
 )
 
@@ -17,7 +18,7 @@ var (
 )
 
 // Bind services to IoC (dependency injection) container
-func Init(c container.Container) {
+func Init(c container.Container, logger log.ILogger) {
 
 	// Resolve dependencies and return concrete type of given abstractions (for repos)
 	c.Make(&accountRepo)
@@ -27,22 +28,22 @@ func Init(c container.Container) {
 
 	// Bind token service
 	c.Singleton(func() ITokenService {
-		return NewTokenService(tokenRepo)
+		return NewTokenService(logger, tokenRepo)
 	})
 
 	// Bind auth service
 	c.Singleton(func() IAuthService {
-		return NewAuthService(config.Load().JWTConf.Secret)
+		return NewAuthService(logger, config.Load().JWTConf.Secret)
 	})
 
 	// Bind user service
 	c.Singleton(func() IUserService {
-		return NewUserService(userRepo)
+		return NewUserService(logger, userRepo)
 	})
 
 	// Bind auth provider service
 	c.Singleton(func() IAuthProviderService {
-		return NewAuthProviderService(config.Load().JWTConf.Secret, authProviderRepo)
+		return NewAuthProviderService(logger, config.Load().JWTConf.Secret, authProviderRepo)
 	})
 
 	// Resolve dependencies and return concrete type of given abstractions (for services)
@@ -51,7 +52,7 @@ func Init(c container.Container) {
 
 	// Bind account service
 	c.Singleton(func() IAccountService {
-		return NewAccountService(tokenSvc, authSvc, accountRepo, userRepo, authProviderRepo, tokenRepo)
+		return NewAccountService(logger, tokenSvc, authSvc, accountRepo, userRepo, authProviderRepo, tokenRepo)
 	})
 
 }

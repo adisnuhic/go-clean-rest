@@ -4,6 +4,7 @@ import (
 	"github.com/adisnuhic/go-clean/internal/models"
 	"github.com/adisnuhic/go-clean/internal/repositories"
 	"github.com/adisnuhic/go-clean/pkg/apperror"
+	"github.com/adisnuhic/go-clean/pkg/log"
 )
 
 // IAuthProviderService represents auth provider service contract
@@ -15,13 +16,15 @@ type IAuthProviderService interface {
 }
 
 type authProviderService struct {
+	Logger     log.ILogger
 	JWTSecret  string
 	Repository repositories.IAuthProviderRepository
 }
 
 // NewAuthProviderService -
-func NewAuthProviderService(secret string, repo repositories.IAuthProviderRepository) IAuthProviderService {
+func NewAuthProviderService(logger log.ILogger, secret string, repo repositories.IAuthProviderRepository) IAuthProviderService {
 	return &authProviderService{
+		Logger:     logger,
 		JWTSecret:  secret,
 		Repository: repo,
 	}

@@ -5,6 +5,7 @@ import (
 
 	"github.com/adisnuhic/go-clean/internal/ecode"
 	"github.com/adisnuhic/go-clean/pkg/apperror"
+	"github.com/adisnuhic/go-clean/pkg/log"
 	"github.com/dgrijalva/jwt-go"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -17,12 +18,14 @@ type IAuthService interface {
 }
 
 type authService struct {
+	Logger    log.ILogger
 	JWTSecret string
 }
 
 // NewAuthService -
-func NewAuthService(jwtSecret string) IAuthService {
+func NewAuthService(logger log.ILogger, jwtSecret string) IAuthService {
 	return &authService{
+		Logger:    logger,
 		JWTSecret: jwtSecret,
 	}
 }

@@ -5,6 +5,7 @@ import (
 	"github.com/adisnuhic/go-clean/internal/models"
 	"github.com/adisnuhic/go-clean/internal/repositories"
 	"github.com/adisnuhic/go-clean/pkg/apperror"
+	"github.com/adisnuhic/go-clean/pkg/log"
 )
 
 // IAccountService represents account service contract
@@ -14,6 +15,8 @@ type IAccountService interface {
 }
 
 type accountService struct {
+	Logger log.ILogger
+
 	TokenService ITokenService
 	AuthService  IAuthService
 
@@ -24,8 +27,9 @@ type accountService struct {
 }
 
 // NewAccountService -
-func NewAccountService(tokenSvc ITokenService, authSvc IAuthService, repo repositories.IAccountRepository, userRepo repositories.IUserRepository, authProviderRepo repositories.IAuthProviderRepository, tokenRepo repositories.ITokenRepository) IAccountService {
+func NewAccountService(logger log.ILogger, tokenSvc ITokenService, authSvc IAuthService, repo repositories.IAccountRepository, userRepo repositories.IUserRepository, authProviderRepo repositories.IAuthProviderRepository, tokenRepo repositories.ITokenRepository) IAccountService {
 	return &accountService{
+		Logger:           logger,
 		TokenService:     tokenSvc,
 		AuthService:      authSvc,
 		Repo:             repo,
@@ -38,7 +42,7 @@ func NewAccountService(tokenSvc ITokenService, authSvc IAuthService, repo reposi
 // Login user
 func (svc accountService) Login(email string, password string) (*models.User, string, string, *apperror.AppError) {
 	user, errUser := svc.UserRepo.GetByEmail(email)
-
+	svc.Logger.Printf("LOGGER DJELO: %v", 22)
 	if errUser != nil {
 		return nil, "", "", apperror.New(ecode.ErrLoginFailedCode, errUser.Cause, ecode.ErrLoginFailedMsg)
 	}

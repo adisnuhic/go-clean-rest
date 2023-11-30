@@ -34,7 +34,7 @@ func main() {
 	repositories.Init(c)
 
 	// init services/usecases
-	services.Init(c)
+	services.Init(c, logger)
 
 	// init controllers/handlers
 	rest.Init(c)

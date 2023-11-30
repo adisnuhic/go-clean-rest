@@ -4,6 +4,7 @@ import (
 	"github.com/adisnuhic/go-clean/internal/models"
 	"github.com/adisnuhic/go-clean/internal/repositories"
 	"github.com/adisnuhic/go-clean/pkg/apperror"
+	"github.com/adisnuhic/go-clean/pkg/log"
 )
 
 // IUserService represents the user service contract
@@ -13,13 +14,15 @@ type IUserService interface {
 }
 
 type userService struct {
-	Repo repositories.IUserRepository
+	Logger log.ILogger
+	Repo   repositories.IUserRepository
 }
 
 // NewUserService -
-func NewUserService(repo repositories.IUserRepository) IUserService {
+func NewUserService(logger log.ILogger, repo repositories.IUserRepository) IUserService {
 	return userService{
-		Repo: repo,
+		Logger: logger,
+		Repo:   repo,
 	}
 }
 
