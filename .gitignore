@@ -20,4 +20,5 @@ vendor.zip
 .idea
 .vscode
 .envrc
+.env
 .DS_Store
