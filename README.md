@@ -71,6 +71,10 @@ In **Clean Architecture**, there's a strong emphasis on Dependency Inversion Pri
 
 **N-Tier** Architecture, on the other hand, does not specifically enforce this level of abstraction. While it also divides the application into layers (presentation, business logic, data access), it might not inherently emphasize the use of interfaces to abstract data access.
 
+In a traditional n-tier architecture, the flow often follows a more rigid, top-to-bottom approach, and injecting business logic into other business logic layers might not be a typical practice. The structure tends to be more hierarchical, with a clear separation between layers
+
+In Clean Architecture, the emphasis on creating clean abstractions allows for greater flexibility in dependency management. 
+Clean Architecture's focus on abstractions and independence between layers encourages and supports injecting abstractions, including business logic, into other components. It is not uncommon in clean architecture to inject busness into business layer but it should be done thoughtfully maintaining the clarity and separation of concerns. 
 
 ## Clean Diagrams:
 ![93830264-afa9c480-fcaa-11ea-9589-7c5308c291f4](https://github.com/adisnuhic/go-clean/assets/17688087/1c031497-567f-4381-b4f6-1efa1c503e05)
