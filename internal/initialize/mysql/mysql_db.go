@@ -51,12 +51,12 @@ func initDB(dbConn config.DBConnection, logger log.ILogger) Store {
 	// open DB connection
 	myDB, err := gorm.Open(dbConn.DBDialect, dbConn.DBConnection)
 	if err != nil {
-		// logger.Error().Msg(err.Error())
+		logger.Errorf("unable to connect to database: %v", err)
 	}
 
 	// ping database
 	if err := myDB.DB().Ping(); err != nil {
-		// logger.Error().Msg(err.Error())
+		logger.Errorf("unable to ping database: %v", err)
 	}
 
 	// SetMaxIdleConns sets maximum number of connections in the idle connection pool
@@ -85,18 +85,18 @@ func initDB(dbConn config.DBConnection, logger log.ILogger) Store {
 func runMigrate(store Store, logger log.ILogger) {
 	driver, err := mysqlmigrate.WithInstance(store.DB(), &mysqlmigrate.Config{})
 	if err != nil {
-		//logger.Fatal().Msg(err.Error())
+		logger.Fatalf("unable to migrate: %v", err)
 	}
 	m, err := migrate.NewWithDatabaseInstance(
 		"file://migrations",
 		"mysql", driver)
 	if err != nil {
-		// logger.Fatal().Msg(err.Error())
+		logger.Fatalf("unable to migrate: %v", err)
 	}
 
 	migrateErr := m.Up()
 	if migrateErr != nil {
-		logger.Printf("Unable to migrate: %v", migrateErr)
+		logger.Printf("unable to migrate: %v", migrateErr)
 	}
 
 	if migrateErr == nil {
