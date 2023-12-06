@@ -32,6 +32,13 @@ The Clean Architecture, proposed by Robert C. Martin, focuses on separating conc
 
 The key point in Clean Architecture is that the inner layers (use cases/entities) should not depend on the outer layers (such as frameworks, databases, or UI). Instead, the dependencies should flow from the outer layers towards the inner layers, allowing for flexibility, testability, and easier maintenance.
 
+**Some Notes:** 
+In this project i was using DI (dependency injection) container for managing and handling dependencies between various components of an application.
+
+For logging i was using zerolog. Since service layer should not depend on any external packages, frameworks etc... i was using adapter pattern in order to achieve this so service layer depends on interface rather than concrete type. 
+
+If you want to replace zerolog with some other package you can do it, all you need to do is to implement the interface and the methods regarding that package.
+
 **Terminology:** 
 Some terminology may differ from team to team
 1. Domain / Model / Entity
