@@ -44,7 +44,7 @@ func InitRoutes(c container.Container, app *gin.Engine, logger log.ILogger) {
 
 	// account routes
 	usersRoutes := v1.Group("/users")
-	usersRoutes.GET("/:id", userCtrl.GetByID)
+	usersRoutes.GET("/:id", middleware.ProfileMiddleware(userCtrl.GetByID, logger))
 
 	// --------------------------------------------------- //
 	//						SWAGGER						   //

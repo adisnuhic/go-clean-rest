@@ -4,18 +4,18 @@ import "github.com/rs/zerolog"
 
 // ILoggerGeneral general contract methods that fits most of the loggers (zerolog, logrus...)
 type ILoggerGeneral interface {
-	Printf(format string, v interface{})
-	Print(v interface{})
+	Printf(format string, v ...interface{})
+	Print(v ...interface{})
 	Fatal(v string)
-	Fatalf(format string, v interface{})
+	Fatalf(format string, v ...interface{})
 	Panic(v string)
-	Panicf(format string, v interface{})
+	Panicf(format string, v ...interface{})
 }
 
 // IZeroLogger zero logger specific contract
 type IZeroLogger interface {
 	Error(err error)
-	Errorf(format string, v interface{})
+	Errorf(format string, v ...interface{})
 }
 
 // ILogger contract
@@ -37,13 +37,13 @@ func NewZeroLogger(zeroLogger zerolog.Logger) ILogger {
 }
 
 // Printf sends a log event using debug level and no extra field. Arguments are handled in the manner of fmt.Printf.
-func (l zereoLoggerAdapter) Printf(format string, v interface{}) {
-	l.zeroLogger.Printf(format, v)
+func (l zereoLoggerAdapter) Printf(format string, v ...interface{}) {
+	l.zeroLogger.Printf(format, v...)
 }
 
 // Print sends a log event using debug level and no extra field. Arguments are handled in the manner of fmt.Print.
-func (l zereoLoggerAdapter) Print(v interface{}) {
-	l.zeroLogger.Print(v)
+func (l zereoLoggerAdapter) Print(v ...interface{}) {
+	l.zeroLogger.Print(v...)
 }
 
 // Fatal starts a new message with fatal level. The os.Exit(1) function is called by the Msg method, which terminates the program immediately.
@@ -52,8 +52,8 @@ func (l zereoLoggerAdapter) Fatal(v string) {
 }
 
 // Fatal starts a new message with fatal level. The os.Exit(1) function is called by the Msg method, which terminates the program immediately.
-func (l zereoLoggerAdapter) Fatalf(format string, v interface{}) {
-	l.zeroLogger.Fatal().Msgf(format, v)
+func (l zereoLoggerAdapter) Fatalf(format string, v ...interface{}) {
+	l.zeroLogger.Fatal().Msgf(format, v...)
 }
 
 // Panic starts a new message with panic level. The panic() function is called by the Msg method, which stops the ordinary flow of a goroutine.
@@ -62,8 +62,8 @@ func (l zereoLoggerAdapter) Panic(v string) {
 }
 
 // Panic starts a new message with panic level. The panic() function is called by the Msg method, which stops the ordinary flow of a goroutine.
-func (l zereoLoggerAdapter) Panicf(format string, v interface{}) {
-	l.zeroLogger.Panic().Msgf(format, v)
+func (l zereoLoggerAdapter) Panicf(format string, v ...interface{}) {
+	l.zeroLogger.Panic().Msgf(format, v...)
 }
 
 // Error starts a new message with error level. Err adds the field "error" with serialized err to the *Event context. If err is nil, no field is added.
@@ -72,6 +72,6 @@ func (l zereoLoggerAdapter) Error(err error) {
 }
 
 // Error starts a new message with error level. Msgf sends the event with formatted msg added as the message field if not empty.
-func (l zereoLoggerAdapter) Errorf(format string, v interface{}) {
-	l.zeroLogger.Error().Msgf(format, v)
+func (l zereoLoggerAdapter) Errorf(format string, v ...interface{}) {
+	l.zeroLogger.Error().Msgf(format, v...)
 }

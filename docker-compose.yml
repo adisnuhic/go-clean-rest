@@ -24,5 +24,7 @@ services:
     restart: on-failure
     ports:
       - "8080:8080"
+    volumes:
+      - ./profile_data:/tmp  # map "tmp" folder from container to "profile_data" on host
 volumes:
   api_clean-data:        
