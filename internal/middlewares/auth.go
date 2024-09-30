@@ -7,8 +7,8 @@ import (
 
 	"github.com/adisnuhic/go-clean/config"
 	"github.com/adisnuhic/go-clean/pkg/log"
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt"
 )
 
 // Authorization middleware

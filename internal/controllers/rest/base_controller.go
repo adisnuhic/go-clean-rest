@@ -9,10 +9,10 @@ import (
 	"github.com/adisnuhic/go-clean/internal/models"
 	"github.com/adisnuhic/go-clean/internal/viewmodels"
 	"github.com/adisnuhic/go-clean/pkg/apperror"
-	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-contrib/requestid"
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
+	"github.com/golang-jwt/jwt"
 )
 
 // BaseController -

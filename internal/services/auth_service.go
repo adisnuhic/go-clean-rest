@@ -6,7 +6,7 @@ import (
 	"github.com/adisnuhic/go-clean/internal/ecode"
 	"github.com/adisnuhic/go-clean/pkg/apperror"
 	"github.com/adisnuhic/go-clean/pkg/log"
-	"github.com/dgrijalva/jwt-go"
+	"github.com/golang-jwt/jwt"
 	"golang.org/x/crypto/bcrypt"
 )
 
